@@ -1,0 +1,17 @@
+@import "styles/variables";
+
+@import "~angular-ui-select/select.css";
+
+$orange-font-path: "assets/fonts/";
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+$fa-font-path: "~font-awesome/fonts/";
+@import "~font-awesome/scss/font-awesome";
+
+@import "styles/mixins";
+@import "styles/forms";
+@import "styles/type";
+@import "styles/layout";
+@import "styles/navbar";
+@import "styles/buttons";
+@import "styles/tables";
