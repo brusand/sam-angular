@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
     src: {
-        ts: path.join(__dirname, 'src/index.ts'),
+        ts: path.join(__dirname, 'src/sam.ts'),
         scss: path.join(__dirname, 'src/index.scss'),
         html: path.join(__dirname, 'src/index.html')
     },

@@ -16,7 +16,7 @@ module.exports = function buildWebpackConfig(settings) {
   var output = config.output[settings.output];
   var production = settings.output === 'prod';
   var options = {
-    entry: [config.src.ts, config.src.scss],
+    entry: [config.src.ts],
     output: {
       filename: output.js,
       path: output.directory
@@ -30,11 +30,7 @@ module.exports = function buildWebpackConfig(settings) {
       loaders: [
         {
           test: /\.ts$/,
-          loader: 'ng-annotate!ts'
-        },
-        {
-          test: /locale\..*\.json$/,
-          loader: 'file?name=assets/locales/[name].[ext]?[hash]'
+          loader: 'ts'
         },
         {
           test: /\.scss$/,
