@@ -47,83 +47,74 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! c:\Users\EBDU6461\git\sam-angular\src\sam.ts */1);
+	module.exports = __webpack_require__(/*! c:\Users\EBDU6461\git\sam-angular\src\samlom.ts */1);
 
 
 /***/ },
 /* 1 */
-/*!********************!*\
-  !*** ./src/sam.ts ***!
-  \********************/
+/*!***********************!*\
+  !*** ./src/samlom.ts ***!
+  \***********************/
 /***/ function(module, exports) {
 
-	var SamAction = (function () {
-	    function SamAction(model) {
-	        this.model = model;
-	    }
-	    SamAction.prototype.init = function (data, present) {
-	        present = present || model.present;
-	        return present(data);
-	    };
-	    return SamAction;
-	})();
-	;
-	var SamModel = (function () {
-	    function SamModel(state) {
-	        this.state = state;
-	        this.model = this;
-	        //this.model = this;
-	    }
-	    SamModel.prototype.present = function (data) {
-	        if (!data.ready)
-	            model.ready = data.ready;
-	        return state.render(model);
-	    };
-	    return SamModel;
-	})();
-	var SamState = (function () {
-	    function SamState(view) {
-	        this.view = view;
-	    }
-	    SamState.prototype.compute = function (model) {
-	        if (this.ready(model))
-	            return view.ready(model);
-	    };
-	    SamState.prototype.representation = function (model) {
-	        var representation = 'oops... something went wrong, the system is in an invalid state';
-	        if (this.ready(model)) {
-	            representation = view.ready(model);
-	        }
-	        return representation;
-	    };
-	    ;
-	    SamState.prototype.nextAction = function (model) {
-	    };
-	    ;
-	    SamState.prototype.render = function (model) {
-	        return state.representation(model);
-	        //state.nextAction(model) ;
-	    };
-	    SamState.prototype.ready = function (model) {
-	        return model.ready;
-	    };
-	    return SamState;
-	})();
-	var SamView = (function () {
-	    function SamView() {
-	    }
-	    // State representation of the ready state 
-	    SamView.prototype.ready = function (model) {
-	        return ("<div>Sam ready " + model.ready + "</div>");
-	    };
-	    ;
-	    return SamView;
-	})();
-	var view = new SamView();
-	var state = new SamState(view);
-	var model = new SamModel(state);
-	var actions = new SamAction(model);
-	document.body.innerHTML = actions.init({ ready: true }, null);
+	var COUNTER_MAX = 10;
+	var model = {};
+	model.present = function (data) {
+	    state.render(model);
+	};
+	////////////////////////////////////////////////////////////////////////////////
+	// View
+	//
+	var view = {};
+	// Initial State
+	view.init = function (model) {
+	    return view.ready(model);
+	};
+	// State representation of the ready state
+	view.ready = function (model) {
+	    return ("");
+	};
+	//display the state representation
+	view.display = function (representation) {
+	    var stateRepresentation = document.getElementById("representation");
+	    stateRepresentation.innerHTML = representation;
+	};
+	// Display initial state
+	view.display(view.init(model));
+	////////////////////////////////////////////////////////////////////////////////
+	// State
+	//
+	var state = { view: view };
+	model.state = state;
+	// Derive the state representation as a function of the systen
+	// control state
+	state.representation = function (model) {
+	    var representation = 'oops... something went wrong, the system is in an invalid state';
+	    state.view.display(representation);
+	};
+	// Derive the current state of the system
+	state.ready = function (model) {
+	    return ((model.counter === COUNTER_MAX) && !model.started && !model.launched && !model.aborted);
+	};
+	// Next action predicate, derives whether
+	// the system is in a (control) state where
+	// an action needs to be invoked
+	state.nextAction = function (model) {
+	};
+	state.render = function (model) {
+	    state.representation(model);
+	    state.nextAction(model);
+	};
+	////////////////////////////////////////////////////////////////////////////////
+	// Actions
+	//
+	var actions = {};
+	actions.init = function (data, present) {
+	    present = present || model.present;
+	    data.started = true;
+	    present(data);
+	    return false;
+	};
 
 
 /***/ }

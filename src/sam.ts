@@ -8,22 +8,30 @@
         }
     }
     interface ISamModel {
-          ready:boolean;  
           present(data:any):any;
     };
         
-    class SamModel implements ISamModel{
-        ready: boolean;
-        model: any = this;
+    abstract class SamModel implements ISamModel{
+        model;
         constructor(public state) {
             this.model = this;
             this.model.ready = false;
         }
         public present(data) {
-            if (!(typeof data.ready === 'undefined') ) model.ready = data.ready;
             return state.render(model)
         }
     } 
+    class MySamModel extends SamModel {
+        ready: boolean;
+        constructor(public state) {
+            //this.model = this;
+           // this.model.ready = false;
+        }
+        public present(data) {
+            if (!(typeof data.ready === 'undefined') ) model.ready = data.ready;
+            return state.render(model)
+        }        
+    }
     class SamState {
         constructor(public view) {
 
@@ -74,7 +82,7 @@
 
 var view  = new SamView();
 var state  = new SamState(view);
-var model = new SamModel(state);
+var model = new SamModel<MyModel>(state);
 var actions  = new SamAction(model);
 
 document.body.innerHTML =  actions.init({ready: true}, null);

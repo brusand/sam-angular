@@ -1,5 +1,5 @@
 {
-  "name": "lo-lpwan-portal-customer",
+  "name": "iaes-web-lom",
   "version": "0.0.0",
   "description": "",
   "author": "",
@@ -9,7 +9,7 @@
     "build:dev": "webpack --config webpack.dev.js -d --colors",
     "serve:dev": "webpack-dev-server --config webpack.dev.js -d --inline --history-api-fallback",
     "build:prod": "webpack --config webpack.prod.js --colors",
-    "serve:prod": "webpack-dev-server --config webpack.prod.js -inline --history-api-fallback",
+    "serve:prod": "webpack-dev-server --config webpack.prod.js -inline --history-api-fallback --https",
     "typings-install": "typings install",
     "postinstall": "npm run typings-install"
   },
