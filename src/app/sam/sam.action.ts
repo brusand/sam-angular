@@ -1,5 +1,5 @@
 /// <reference path="sam.model.ts"/>;
-export module Sam {
+
     export class SamAction {
         constructor(public model) {
         }
@@ -9,5 +9,4 @@ export module Sam {
             return present(data);
         }
     }
-  
-}
+

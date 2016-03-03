@@ -6,6 +6,7 @@ import {COMMON_MODULE} from './common/common.module';
 import {LIVE_OBJECTS_MODULE} from './live-objects/live-objects.module';
 import {DEVICE_MODULE} from './device/device.module';
 import {TABLE_MODULE} from './table/table.module';
+import {SAM_MODULE} from './sam/sam.module';
 
 export const APP_MODULE: ng.IModule =  angular.module(APP_CONFIGURATION.id, [
   'ngMessages',
@@ -22,5 +23,6 @@ export const APP_MODULE: ng.IModule =  angular.module(APP_CONFIGURATION.id, [
   DEVICE_MODULE.name,
   LOGIN_MODULE.name,
   LIVE_OBJECTS_MODULE.name,
-  TABLE_MODULE.name
+  TABLE_MODULE.name,
+  SAM_MODULE.name
 ]);
