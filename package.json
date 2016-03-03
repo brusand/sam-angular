@@ -10,6 +10,7 @@
     "serve:dev": "webpack-dev-server --config webpack.dev.js -d --inline --history-api-fallback",
     "build:prod": "webpack --config webpack.prod.js --colors",
     "serve:prod": "webpack-dev-server --config webpack.prod.js -inline --history-api-fallback --https",
+    "serve:sam": "webpack-dev-server --content-base src",
     "typings-install": "typings install",
     "postinstall": "npm run typings-install"
   },
