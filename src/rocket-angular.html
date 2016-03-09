@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<body>
+<rocket id='rocket1'></rocket>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script>
+  var app = angular.module('rocket-app', [])
+   .controller('samRocketCtrl', ['$compile', '$scope', '$timeout',  function($compile, $scope, $timeout) {
+       const COUNTER_MAX = 5;
+              $scope.vm = this;
+       this.model = { 
+                    counter: COUNTER_MAX, 
+                    started: false,      
+                    launched: false, 
+                    aborted: false
+                    }
+                    
+        this.actions = {model: this.model} ;
+
+        this.actions.start = function() {
+            $scope.vm.model.started = true;
+            $scope.vm.actions.decrement()
+        }
+
+        this.actions.decrement = function() {
+            var d = $scope.vm.actions.model;
+            
+            d.counter = d.counter - 1 ;
+            if (d.counter == 0) {
+                d.launched = true ;
+            }
+            
+            if (!d.launched == true && !d.aborted == true) {
+                $timeout(function() {
+                        $scope.vm.actions.decrement();
+                }, 1000) ;
+             }
+        }
+
+        this.actions.launch = function() {
+            $scope.vm.actions.model.launched = true ;
+        }
+
+        this.actions.abort = function() {
+            $scope.vm.actions.model.aborted = true ;
+        } 
+
+         
+   }])
+   .directive('rocket', ['$compile',function($compile) {
+ 
+      return {
+        restrict: 'E', 
+        templateUrl:"rocket.tpl.html",
+        scope: {
+            id: '@id'
+            //representation:'='
+        },
+        controllerAs: 'vm',
+        bindToController: {
+            id:'@'
+     
+        },
+        controller: 'samRocketCtrl',
+        link: function($scope, $element, $attrs) {
+
+            
+        }
+        
+      }
+  }])
+  
+  angular.bootstrap(document, ['rocket-app']);
+</script>
+</body>
+</html>

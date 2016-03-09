@@ -36,6 +36,7 @@ export class RestService {
   }
 
   public auth(email: string, password: string) {
+      $q.value( ); //creer une promesse a partir d une valeur 
     return this.cmnHttp.post(this.uri.auth(), {email, password}, {params: {cookie: true}});
   }
 

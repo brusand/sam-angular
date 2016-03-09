@@ -41,7 +41,7 @@
             // State representation of the ready state
             $scope.view.ready = function(model) {
                 return (
-                        "<p>Counter:" + model.counter +"</p>\n\
+                        "<p>Counter: {{vm.model.counter}} </p>\n\
                         <form ng-submit=actions.Start({})>\n\
                             <input type=\"submit\" value=\"Start\">\n\
                         </form>"
@@ -52,7 +52,7 @@
             $scope.view.counting = function(model) {
 
                 return (
-                        "<p>Count down:"+ model.counter + "</p>\n\
+                        "<p>Count down:  {{vm.model.counter}} </p>\n\
                         <form ng-submit=actions.abort({})>\n\
                             <input type=\"submit\" value=\"Abort\">\n\
                         </form>"
@@ -63,7 +63,7 @@
             $scope.view.aborted = function(model) {
 
                 return (
-                        "<p>Aborted at Counter:"+model.counter+"</p>\n"
+                        "<p>Aborted at Counter: {{vm.model.counter}} </p>\n"
                     ) ;
             }
 
